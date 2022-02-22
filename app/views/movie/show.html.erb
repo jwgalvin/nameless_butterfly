@@ -1,0 +1,21 @@
+<h1><%= "#{@movie.title}"%></h1>
+<h3>Created:<%= "#{@movie.creation_year}" %> </h3>
+<h3>Genre:<%= "#{@movie.genre}" %> </h3>
+
+
+<h2> Starring:</h2>
+<% @actors.each do |actor| %>
+  <h4>Name: <%="#{actor.name}" %></h4>
+  <h4>Age: <%="#{actor.age}" %></h4>
+<%end%>
+
+<h4><%="Add Actor, search by name" %></h4>
+<%= form_with url: "/movie/#{@movie.id}?search=actor", method: :get, local: true do |form| %>
+<%=form.label :name %>
+<%=form.text_field :name%>
+<%=form.submit "Search"%>
+<%end%>
+
+  <ul>
+    <li><%=button_to "add #{@actorz.name}", method: :post, params: :name %></li>
+  </ul>
